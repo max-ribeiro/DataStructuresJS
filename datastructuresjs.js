@@ -38,5 +38,19 @@ createLinkedList(arr){
   }   
   return null;
 } 
+//Timer for search
+/* Handle para request de busca */
+let timer;
+const interval = 5000;
+$(document).on('keyup', () => {
+  clearTimeout(timer);
+  logger.log('digitando...');
+  timer = setTimeout(() => {
+    logger.log('parou de digitar.');
+  }, interval);
+});
 
+$(document).on('keydown', function() {
+  clearTimeout(timer);
+});
 
