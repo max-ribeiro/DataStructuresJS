@@ -82,4 +82,32 @@ function handleScrollableTableDrag() {
     };
   }
 }
+//verify right drag
+let rightDragging = false;
+      $('.modal-content').on(
+        {
+          mousedown: e => {
+            if (e.which == 3) {
+              e.preventDefault();
+              rightDragging = true;
+            }
+          },
+          mouseup: e => {
+            if (e.which == 3) {
+              e.preventDefault();
+              rightDragging = false;
+            }
+          },
+          mousemove: e => {
+            if (rightDragging) {
+              e.preventDefault();
+            }
+          },
+          contextmenu: e => {
+            e.preventDefault();
+          }
+        },
+        '#map'
+      );
+
 
