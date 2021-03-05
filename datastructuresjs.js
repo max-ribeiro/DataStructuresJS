@@ -54,3 +54,32 @@ $(document).on('keydown', function() {
   clearTimeout(timer);
 });
 
+//Funcao click and drag to scroll para as tabelas de resultado sql
+function handleScrollableTableDrag() {
+  let clicked = false;
+  let clickX = 0;
+  const table = $('.table-scrollable');
+  if (table) {
+    table.on({
+      mousemove: e => {
+        clicked && updateScrollPosition(e);
+      },
+      mousedown: e => {
+        clicked = true;
+        clickX = e.pageX;
+      },
+      mouseup: () => {
+        clicked = false;
+        table.css('cursor', 'auto');
+        table.css('user-select', 'auto');
+      }
+    });
+
+    const updateScrollPosition = e => {
+      table.css('cursor', 'grabbing');
+      table.css('user-select', 'none');
+      table.scrollLeft(table.scrollLeft() + (clickX - e.pageX));
+    };
+  }
+}
+
